@@ -19,13 +19,12 @@ const insertZ = [
   'turned into a slug and crawled away',
 ];
 
-// 3. EVENT LISTENER AND PARTIAL FUNCTION DEFINITION
+// 3. EVENT LISTENER AND FUNCTION
 randomize.addEventListener('click', result);
 
 function result() {
   let newStory = storyText;
 
-  // Replace placeholders with random values
   const xItem = randomValueFromArray(insertX);
   const yItem = randomValueFromArray(insertY);
   const zItem = randomValueFromArray(insertZ);
@@ -34,13 +33,11 @@ function result() {
   newStory = newStory.replace(':inserty:', yItem);
   newStory = newStory.replace(':insertz:', zItem);
 
-  // Replace Bob with custom name if provided
   if (customName.value !== '') {
     const name = customName.value;
     newStory = newStory.replace('Bob', name);
   }
 
-  // Convert weight and temperature for UK settings
   if (document.getElementById('uk').checked) {
     const weight = `${Math.round(300 / 14)} stone`;
     const temperature = `${Math.round((94 - 32) * (5 / 9))} centigrade`;
@@ -49,7 +46,6 @@ function result() {
     newStory = newStory.replace('300 pounds', weight);
   }
 
-  // Display the story
   story.textContent = newStory;
   story.style.visibility = 'visible';
 }
